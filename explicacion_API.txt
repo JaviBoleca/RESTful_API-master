@@ -1,0 +1,26 @@
+
+En tu proyecto, el proceso de autenticación sigue los siguientes pasos:
+
+Registro de usuario:
+
+El usuario completa el formulario de registro en la página HTML.
+Al hacer clic en el botón "Registrarse", se envía una solicitud POST al endpoint "/auth/signup" del servidor.
+En el servidor, se recibe la solicitud y se extraen los datos del cuerpo de la solicitud (correo electrónico, contraseña, etc.).
+Se crea un nuevo objeto de modelo utilizando los datos recibidos y se guarda en la base de datos.
+Si el registro es exitoso, se devuelve una respuesta JSON con un estado "succeeded" y los datos del usuario guardado.
+Inicio de sesión:
+
+El usuario completa el formulario de inicio de sesión en la página HTML.
+Al hacer clic en el botón "Iniciar sesión", se envía una solicitud POST al endpoint "/auth/login" del servidor.
+En el servidor, se recibe la solicitud y se extraen los datos del cuerpo de la solicitud (correo electrónico, contraseña, etc.).
+Se busca en la base de datos un documento donde el campo "email" coincide con el valor enviado.
+Si se encuentra un documento con el correo electrónico especificado, se compara la contraseña enviada con la contraseña almacenada en el documento.
+Si las contraseñas coinciden, se genera un token JWT que contiene el correo electrónico y el rol del usuario.
+El token se devuelve como parte de la respuesta JSON junto con los datos del usuario, como el ID, correo electrónico y rol.
+El token también se almacena en el cliente para su uso en solicitudes posteriores.
+Renovación de token de acceso:
+
+El cliente puede enviar una solicitud GET al endpoint "/auth/refresh" para renovar el token de acceso cuando ha expirado.
+Se verifica el token de refresco enviado en la solicitud.
+Si el token de refresco es válido y corresponde a un usuario autenticado, se genera un nuevo token de acceso y se devuelve como parte de la respuesta JSON.
+El nuevo token de acceso reemplaza al anterior y puede ser utilizado para realizar solicitudes protegidas.
