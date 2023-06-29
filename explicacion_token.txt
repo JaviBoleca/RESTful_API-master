@@ -1,0 +1,36 @@
+1.Signup: la info de mail nombre y password se envian mediante post 
+a al backend en el body.
+2.El backend verifica que cumple con requisitos del 
+post...tipo string, number.. etc.. y crea la cuenta y la almacena
+3.el backend envia en el header el token de acceso junto con la 
+respuesta ok y demas
+4.el cliente almacena el token de acceso en el local storage para que 
+con cada peticion se le autorice via header todo el rato.
+5.Login: la info de mail nombre y password se envian mediante post 
+a al backend en el body.
+6.el backend autentica los datos con la base de datos para ver si exiten
+y envia via header un nuevo token de acceso que se envia al cliente via header
+y de nuevo se hace el proceso de envio del token en el header con cada peticion
+en estas peticiones mientras dura la sesion, se compuebe el token a traves del
+hash para verificar que se ha creado para ese cliente, a menudo mediante jwt. 
+
+
+resumen gpt
+Aquí está el resumen de los pasos que has mencionado:
+
+Registro (Signup):
+
+El cliente envía la información de correo electrónico, nombre y contraseña al backend a través de una solicitud POST en el cuerpo (body) de la petición.
+El backend verifica que los datos cumplan con los requisitos necesarios (por ejemplo, que los campos sean del tipo adecuado, que la contraseña tenga una longitud mínima, etc.).
+Si los datos son válidos, el backend crea una cuenta para el usuario y la almacena en la base de datos.
+El backend genera un token de acceso y lo envía al cliente en el encabezado (header) de la respuesta junto con cualquier otra información necesaria.
+Inicio de sesión (Login):
+5. El cliente envía el correo electrónico y la contraseña al backend a través de una solicitud POST en el cuerpo (body) de la petición.
+
+El backend autentica los datos del usuario verificando si coinciden con los registros almacenados en la base de datos.
+Si las credenciales son válidas, el backend genera un nuevo token de acceso y lo envía al cliente en el encabezado (header) de la respuesta.
+El cliente almacena el token de acceso en el almacenamiento local (como el localStorage) para su uso posterior en las solicitudes al servidor.
+En las solicitudes posteriores, el cliente envía el token de acceso en el encabezado (header) de cada petición al servidor para autorizar y autenticar al usuario.
+El servidor verifica el token de acceso en cada solicitud para garantizar que sea válido y autorizar las acciones solicitadas.
+En general, el proceso de autenticación y autorización se basa en el uso de tokens de acceso, que se generan y se intercambian entre el cliente y el servidor para 
+establecer y mantener la sesión del usuario. Además, se utilizan técnicas como JWT (JSON Web Tokens) para codificar y verificar la información del token de manera segura.
